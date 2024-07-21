@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Route.OrderManagementSystem.APIs.Dtos;
 using Route.OrderManagementSystem.APIs.Errors;
 using Route.OrderManagementSystem.Application.Services.OrderService;
 using Route.OrderManagementSystem.Core.Models.Order;
@@ -19,8 +20,17 @@ namespace Route.OrderManagementSystem.APIs.Controllers
 
 		[HttpPost]
 		[Authorize(Roles = "Customer")]
-		public async Task<IActionResult> CreateOrder(Order order)
+		public async Task<IActionResult> CreateOrder(OrderDto orderDto)
 		{
+			var customerEmail = User.FindFirstValue(ClaimTypes.Email)!;
+
+			var order = new Order()
+			{
+				CustomerEmail = customerEmail,
+				PaymentMethod = orderDto.PaymentMethod,
+				Items = orderDto.Items,
+			};
+
 			var createdOrder = await _orderService.CreateOrderAsync(order);
 			return CreatedAtAction(nameof(GetOrder), new { orderId = createdOrder?.Id }, createdOrder);
 		}

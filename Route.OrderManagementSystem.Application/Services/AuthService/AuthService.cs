@@ -26,6 +26,7 @@ namespace Route.OrderManagementSystem.Application.Services.AuthService
 			// Private Claims
 			var authClaims = new List<Claim>()
 			{
+				new Claim(ClaimTypes.Sid, user.Id!),
 				new Claim(ClaimTypes.Name, user.DisplayName!),
 				new Claim(ClaimTypes.Email, user.Email!),
 			};

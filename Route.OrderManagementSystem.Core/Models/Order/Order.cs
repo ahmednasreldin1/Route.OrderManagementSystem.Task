@@ -3,7 +3,7 @@ namespace Route.OrderManagementSystem.Core.Models.Order
 {
 	public class Order : ModelBase
 	{
-		public int CustomerId { get; set; }
+		public string CustomerEmail { get; set; } = null!;
 		public OrderStatus Status { get; set; } = OrderStatus.Pending;
 		public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.UtcNow;
 		public decimal TotalAmount { get; set; }

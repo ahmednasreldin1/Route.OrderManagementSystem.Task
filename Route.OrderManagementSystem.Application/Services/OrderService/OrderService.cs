@@ -1,6 +1,5 @@
 ﻿using Route.OrderManagementSystem.Core.Contracts.Services;
 using Route.OrderManagementSystem.Core.Contracts.UnitOfWork;
-using Route.OrderManagementSystem.Core.Models.Customer;
 using Route.OrderManagementSystem.Core.Models.Invoice;
 using Route.OrderManagementSystem.Core.Models.Order;
 using Route.OrderManagementSystem.Core.Models.Product;
@@ -8,7 +7,7 @@ using Route.OrderManagementSystem.Core.Specifications.Order_Specs;
 
 namespace Route.OrderManagementSystem.Application.Services.OrderService
 {
-    public class OrderService : IOrderService
+	public class OrderService : IOrderService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IEmailService _emailService;
@@ -26,7 +25,7 @@ namespace Route.OrderManagementSystem.Application.Services.OrderService
 
             if (order is not null)
             {
-                // Validate order
+                // Validate order items and get total
                 if (order.Items?.Count > 0)
                 {
                     var productsRepo = _unitOfWork.Repository<Product>();

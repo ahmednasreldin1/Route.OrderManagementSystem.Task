@@ -43,12 +43,12 @@ namespace Route.OrderManagementSystem.APIs.Controllers
 		[Authorize]
 		[ProducesResponseType(typeof(IReadOnlyList<Order>), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-		[HttpGet("{customerId}/orders")]
-		public async Task<ActionResult<IReadOnlyList<Order>>> GetCustomerOrders(int customerId)
+		[HttpGet("orders")]
+		public async Task<ActionResult<IReadOnlyList<Order>>> GetCustomerOrders()
 		{
 			var customerEmail = User.FindFirstValue(ClaimTypes.Email)!;
 
-			var orders = await _customerService.GetCustomerOrdersAsync(customerId, customerEmail);
+			var orders = await _customerService.GetCustomerOrdersAsync(customerEmail);
 			if (orders == null || !orders.Any())
 			{
 				return NotFound(new ApiResponse(404, "No orders found for this customer."));

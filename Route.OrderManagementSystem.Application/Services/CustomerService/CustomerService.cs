@@ -40,9 +40,9 @@ namespace Route.OrderManagementSystem.Application.Services.CustomerService
             return customer;        
         }
 
-        public async Task<IReadOnlyList<Order>> GetCustomerOrdersAsync(int customerId, string customerEmail)
+        public async Task<IReadOnlyList<Order>> GetCustomerOrdersAsync(string customerEmail)
         {
-            var spec = new OrderSpecifications(O => O.Customer.User.Email == customerEmail && O.CustomerId == customerId);
+            var spec = new OrderSpecifications(O => O.Customer.User.Email == customerEmail && O.CustomerEmail == customerEmail);
 
             var orderRepo = _unitOfWork.Repository<Order>();
 

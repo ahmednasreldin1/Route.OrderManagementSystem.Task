@@ -21,7 +21,7 @@ namespace Route.OrderManagementSystem.Infrastructure._Data.Config.Order_Config
 
 			builder.HasOne(o => o.Customer)
 			.WithMany(c => c.Orders)
-			.HasForeignKey(o => o.CustomerId);
+			.HasForeignKey("CustomerId");
 
 			builder.HasMany(order => order.Items)
 				.WithOne()

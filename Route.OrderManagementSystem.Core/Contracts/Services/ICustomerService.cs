@@ -7,7 +7,7 @@ namespace Route.OrderManagementSystem.Core.Contracts.Services
 	{
 		Task<Customer> CreateCustomerAsync(Customer customer, string password);
 
-		Task<IReadOnlyList<Order>> GetCustomerOrdersAsync(int customerId, string customerEmail);
+		Task<IReadOnlyList<Order>> GetCustomerOrdersAsync(string customerEmail);
 
 	}
 }
